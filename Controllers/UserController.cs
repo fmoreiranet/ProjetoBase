@@ -27,15 +27,15 @@ public class UserController : Controller
             if (!ModelState.IsValid)
             {
                 var erros = ModelState.Values;
-                return View("UserForm");
+                return View("/Views/Home/UserForm.cshtml", erros);
             }
 
             var result = await _userService.AddAsync(user);
-            return View("/Home/Index", user);
+            return View("/Views/Home/Index.cshtml", result);
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.GetBaseException().Message);
+            return View("/Views/Home/UserForm.cshtml", ex.GetBaseException().Message);
         }
     }
 
@@ -45,7 +45,7 @@ public class UserController : Controller
         try
         {
             var result = await _userService.ListAsync(10, 10);
-            return Ok(result);
+            return View("/Views/Home/UserList.cshtml", result);
         }
         catch (Exception ex)
         {

@@ -11,7 +11,7 @@ using ProjetoBase.Data;
 namespace ProjetoBase.Migrations
 {
     [DbContext(typeof(EntityContext))]
-    [Migration("20220703052057_DB-20220703")]
+    [Migration("20220703052218_DB-20220703")]
     partial class DB20220703
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

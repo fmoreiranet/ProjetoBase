@@ -14,12 +14,12 @@ namespace ProjetoBase.Data
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>();
-            modelBuilder.Entity<Category>();
-            modelBuilder.Entity<Message>();
-        }
+        // protected override void OnModelCreating(ModelBuilder modelBuilder)
+        // {
+        //     modelBuilder.Entity<User>();
+        //     modelBuilder.Entity<Category>();
+        //     modelBuilder.Entity<Message>();
+        // }
 
         // protected override void OnConfiguring(DbContextOptionsBuilder options)
         // {

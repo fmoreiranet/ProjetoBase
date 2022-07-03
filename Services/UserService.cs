@@ -18,6 +18,12 @@ namespace ProjetoBase.Services
         {
             try
             {
+                var isUserAdd = _context.Users.Where(u => u.Email == newUser.Email).FirstOrDefault();
+                if (isUserAdd != null)
+                {
+                    throw new Exception("Usuario já cadastrado!");
+                }
+
                 _context.Users.Add(newUser);
                 await _context.SaveChangesAsync();
                 return true;

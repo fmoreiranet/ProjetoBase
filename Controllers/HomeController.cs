@@ -38,6 +38,11 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult UserList()
+    {
+        return View();
+    }
+
     public IActionResult MessageForm()
     {
         return View();
