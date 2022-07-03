@@ -5,34 +5,34 @@ using ProjetoBase.Interfaces;
 
 namespace ProjetoBase.Controllers;
 
-public class UserController : Controller
+public class CategoryController : Controller
 {
-    protected IUserService _userService;
+    protected ICategoryService _categoryService;
 
-    private readonly ILogger<UserController> _logger;
+    private readonly ILogger<CategoryController> _logger;
 
-    public UserController(
-        ILogger<UserController> logger,
-        IUserService userService
+    public CategoryController(
+        ILogger<CategoryController> logger,
+        ICategoryService categoryService
     )
     {
         _logger = logger;
-        _userService = userService;
+        _categoryService = categoryService;
     }
 
     [HttpPost]
-    public async Task<IActionResult> Add([FromForm] User user)
+    public async Task<IActionResult> Add([FromForm] Category category)
     {
         try
         {
             if (!ModelState.IsValid)
             {
                 var erros = ModelState.Values;
-                return View("UserForm");
+                return View("CategoryForm");
             }
 
-            var result = await _userService.AddAsync(user);
-            return Ok(user);
+            var result = await _categoryService.AddAsync(category);
+            return Ok(category);
         }
         catch (Exception ex)
         {

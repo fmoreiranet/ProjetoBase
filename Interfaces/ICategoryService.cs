@@ -1,4 +1,3 @@
-using projetoBase.Models;
 using ProjetoBase.Models;
 
 namespace ProjetoBase.Interfaces
@@ -9,7 +8,7 @@ namespace ProjetoBase.Interfaces
 
         Task<List<Category>> ListAsync(int page, int dataPag);
 
-        Task<Category?> GetAsync(Guid id);
+        Task<Category?> GetAsync(Guid Id);
 
         bool Remove(Category category);
     }

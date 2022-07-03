@@ -12,7 +12,7 @@ public class MessageController : Controller
     private readonly ILogger<MessageController> _logger;
 
     public MessageController(
-        ILogger<UserController> logger,
+        ILogger<MessageController> logger,
         IMessageService messageService
     )
     {
@@ -21,18 +21,18 @@ public class MessageController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Add([FromForm] User user)
+    public async Task<IActionResult> Add([FromForm] Message message)
     {
         try
         {
             if (!ModelState.IsValid)
             {
                 var erros = ModelState.Values;
-                return View("UserForm");
+                return View("MessageForm");
             }
 
-            var result = await _userService.AddAsync(user);
-            return Ok(user);
+            var result = await _messageService.AddAsync(message);
+            return Ok(message);
         }
         catch (Exception ex)
         {

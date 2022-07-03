@@ -1,6 +1,5 @@
-using ProjetoBase.Models;
 using Microsoft.EntityFrameworkCore;
-using projetoBase.Models;
+using ProjetoBase.Models;
 
 namespace ProjetoBase.Data
 {

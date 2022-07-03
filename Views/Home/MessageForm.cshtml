@@ -1,0 +1,35 @@
+﻿@model ProjetoBase.Models.Message
+
+@{
+    ViewData["Title"] = "Cadastro de Mensagem";
+}
+
+<div class="text-center">
+    <h1 class="display-4"><i class="fa fa-calendar-times-o" aria-hidden="true"></i></h1>
+</div>
+
+<div class="">
+    <form class="row g-3 needs-validation" novalidate asp-controller="Message" asp-action="Add">
+        <div class="">
+            <label asp-for="Titulo" class="form-label">Titulo</label>
+            <input type="text" class="form-control" id="Titulo" required asp-for="Titulo">
+            <div class="valid-feedback" asp-validation-for="Titulo">
+            </div>
+        </div>
+
+        <div class="">
+            <label asp-for="Texto" class="form-label">Mensagem</label>
+            <div class="mb-3">
+                <label for="" class="form-label"></label>
+                <textarea class="form-control" rows="7" id="Texto" required asp-for="Texto"></textarea>
+            </div>
+            <div class="valid-feedback" asp-validation-for="Texto">
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-primary " value="Add" type="submit">Enviar</button>
+            <a class="btn btn-danger ms-1" type="button" asp-action="Index">Cancelar</a>
+        </div>
+    </form>
+</div>

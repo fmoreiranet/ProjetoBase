@@ -29,11 +29,11 @@ namespace ProjetoBase.Services
             }
         }
 
-        public async Task<User?> GetAsync(Guid id)
+        public async Task<User?> GetAsync(Guid Id)
         {
             try
             {
-                return await _context.Users.Where(u => u.id == id).FirstOrDefaultAsync();
+                return await _context.Users.Where(u => u.Id == Id).FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {

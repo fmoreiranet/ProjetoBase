@@ -8,7 +8,7 @@ namespace ProjetoBase.Interfaces
 
         Task<List<Message>> ListAsync(int page, int dataPag);
 
-        Task<Message?> GetAsync(Guid id);
+        Task<Message?> GetAsync(Guid Id);
 
         bool Remove(Message message);
     }
