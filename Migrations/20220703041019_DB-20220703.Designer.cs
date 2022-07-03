@@ -11,7 +11,7 @@ using ProjetoBase.Data;
 namespace ProjetoBase.Migrations
 {
     [DbContext(typeof(EntityContext))]
-    [Migration("20220703035055_DB-20220703")]
+    [Migration("20220703041019_DB-20220703")]
     partial class DB20220703
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,9 @@ namespace ProjetoBase.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Nome")
                         .IsRequired()

@@ -14,7 +14,8 @@ namespace ProjetoBase.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Nome = table.Column<string>(type: "TEXT", nullable: false)
+                    Nome = table.Column<string>(type: "TEXT", nullable: false),
+                    Ativo = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
