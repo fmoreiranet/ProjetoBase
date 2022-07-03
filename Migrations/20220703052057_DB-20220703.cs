@@ -30,7 +30,7 @@ namespace ProjetoBase.Migrations
                     Nome = table.Column<string>(type: "TEXT", nullable: false),
                     Nick = table.Column<string>(type: "TEXT", nullable: true),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
-                    Pass = table.Column<string>(type: "TEXT", maxLength: 150, nullable: false),
+                    Pass = table.Column<string>(type: "TEXT", nullable: false),
                     Ativo = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>

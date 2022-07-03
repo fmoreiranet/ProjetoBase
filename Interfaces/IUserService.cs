@@ -6,7 +6,7 @@ namespace ProjetoBase.Interfaces
     {
         Task<bool> AddAsync(User users);
 
-        Task<List<User>> ListAsync(int page, int dataPag);
+        Task<List<User>> ListAsync(int page = 1, int dataPag = 10);
 
         Task<User?> GetAsync(Guid Id);
 

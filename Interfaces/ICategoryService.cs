@@ -6,7 +6,7 @@ namespace ProjetoBase.Interfaces
     {
         Task<bool> AddAsync(Category categorys);
 
-        Task<List<Category>> ListAsync(int page, int dataPag);
+        Task<List<Category>> ListAsync(int page = 1, int dataPag = 10);
 
         Task<Category?> GetAsync(Guid Id);
 

@@ -14,9 +14,15 @@ namespace ProjetoBase.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>();
+            modelBuilder.Entity<Category>();
+            modelBuilder.Entity<Message>();
+        }
+
         // protected override void OnConfiguring(DbContextOptionsBuilder options)
         // {
-        //     options.UseNpgsql($"Host=localhost;Port=5432;Pooling=true;Database=Treinamento;User Id= postgres;Password=admin;");
         // }
     }
 }

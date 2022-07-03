@@ -89,7 +89,6 @@ namespace ProjetoBase.Migrations
 
                     b.Property<string>("Pass")
                         .IsRequired()
-                        .HasMaxLength(150)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -100,16 +99,26 @@ namespace ProjetoBase.Migrations
             modelBuilder.Entity("ProjetoBase.Models.Message", b =>
                 {
                     b.HasOne("ProjetoBase.Models.User", "Autor")
-                        .WithMany()
+                        .WithMany("Messages")
                         .HasForeignKey("AutorId");
 
                     b.HasOne("ProjetoBase.Models.Category", "Categoria")
-                        .WithMany()
+                        .WithMany("Messages")
                         .HasForeignKey("CategoriaId");
 
                     b.Navigation("Autor");
 
                     b.Navigation("Categoria");
+                });
+
+            modelBuilder.Entity("ProjetoBase.Models.Category", b =>
+                {
+                    b.Navigation("Messages");
+                });
+
+            modelBuilder.Entity("ProjetoBase.Models.User", b =>
+                {
+                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }

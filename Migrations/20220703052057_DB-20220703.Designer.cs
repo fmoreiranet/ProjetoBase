@@ -11,7 +11,7 @@ using ProjetoBase.Data;
 namespace ProjetoBase.Migrations
 {
     [DbContext(typeof(EntityContext))]
-    [Migration("20220703041019_DB-20220703")]
+    [Migration("20220703052057_DB-20220703")]
     partial class DB20220703
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,7 +91,6 @@ namespace ProjetoBase.Migrations
 
                     b.Property<string>("Pass")
                         .IsRequired()
-                        .HasMaxLength(150)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -102,16 +101,26 @@ namespace ProjetoBase.Migrations
             modelBuilder.Entity("ProjetoBase.Models.Message", b =>
                 {
                     b.HasOne("ProjetoBase.Models.User", "Autor")
-                        .WithMany()
+                        .WithMany("Messages")
                         .HasForeignKey("AutorId");
 
                     b.HasOne("ProjetoBase.Models.Category", "Categoria")
-                        .WithMany()
+                        .WithMany("Messages")
                         .HasForeignKey("CategoriaId");
 
                     b.Navigation("Autor");
 
                     b.Navigation("Categoria");
+                });
+
+            modelBuilder.Entity("ProjetoBase.Models.Category", b =>
+                {
+                    b.Navigation("Messages");
+                });
+
+            modelBuilder.Entity("ProjetoBase.Models.User", b =>
+                {
+                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }

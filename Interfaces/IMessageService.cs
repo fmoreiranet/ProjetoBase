@@ -6,7 +6,7 @@ namespace ProjetoBase.Interfaces
     {
         Task<bool> AddAsync(Message messages);
 
-        Task<List<Message>> ListAsync(int page, int dataPag);
+        Task<List<Message>> ListAsync(int page = 1, int dataPag = 10);
 
         Task<Message?> GetAsync(Guid Id);
 

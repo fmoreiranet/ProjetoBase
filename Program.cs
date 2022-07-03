@@ -25,6 +25,8 @@ builder.Services.AddDbContext<EntityContext>(
 
 //Dependencias
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IMessageService, MessageService>();
 
 var app = builder.Build();
 

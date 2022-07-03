@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ProjetoBase.Models;
 using ProjetoBase.Interfaces;
 
@@ -32,11 +31,27 @@ public class UserController : Controller
             }
 
             var result = await _userService.AddAsync(user);
-            return Ok(user);
+            return View("/Home/Index", user);
         }
         catch (Exception ex)
         {
             return BadRequest(ex.GetBaseException().Message);
         }
     }
+
+    [HttpGet]
+    public async Task<IActionResult> List()
+    {
+        try
+        {
+            var result = await _userService.ListAsync(10, 10);
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.GetBaseException().Message);
+        }
+    }
+
+
 }

@@ -4,7 +4,6 @@ namespace ProjetoBase.Models
 {
     public class Message
     {
-
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
 
@@ -19,5 +18,6 @@ namespace ProjetoBase.Models
         public string? Texto { get; set; }
 
         public bool Ativo { get; set; } = true;
+
     }
 }
