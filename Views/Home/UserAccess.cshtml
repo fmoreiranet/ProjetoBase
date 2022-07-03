@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Entrar";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Entrar</h1>
+
+    <form class="needs-validation" novalidate>
+        <div class="d-grid gap-2 col-md-6 mx-auto">
+            <label for="validationCustom01" class="form-label"></label>
+            <input type="text" class="form-control" id="validationCustom01" placeholder="Usuario ou e-mail" required
+                name="usuario">
+            <div class="valid-feedback"> </div>
+        </div>
+
+        <div class="d-grid gap-2 col-md-6 mx-auto">
+            <label for="validationCustom02" class="form-label"></label>
+            <input type="text" class="form-control" id="validationCustom02" placeholder="Senha" required name="senha">
+            <div class="valid-feedback"> </div>
+        </div>
+
+        <div class="m-3">
+            <div class="d-inline justify-content-start m-1">
+                <button class="btn btn-primary col-12 col-md-2" type="submit">Entrar</button>
+            </div>
+
+            <div class="d-inline justify-content-end m-1">
+                <a class="btn btn-danger col-12 col-md-2 " type="button" asp-action="Index">Sair</a>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center m-3">
+            <a class="btn btn-outline-warning col-12 col-md-2" type="button" asp-controller="Home"
+                asp-action="UserForm">Cadastro</a>
+        </div>
+    </form>
+
+</div>
