@@ -10,32 +10,36 @@
 </div>
 
 <div class="">
-    <form class="row g-3 needs-validation" novalidate asp-controller="User" asp-action="Add">
+    <form class="row g-3 needs-validation" asp-controller="User" asp-action="Add">
         <div class="">
             <label asp-for="Nome" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="validationNome" required asp-for="Nome">
+            <input type="text" class="form-control" id="Nome" required asp-for="Nome">
             <div class="valid-feedback" asp-validation-for="Nome">
+                Nome obrigatório
             </div>
         </div>
 
         <div class="">
             <label asp-for="Email" class="form-label">E-mail</label>
-            <input type="email" class="form-control" id="email" required asp-for="Email">
+            <input type="email" class="form-control" id="Email" required asp-for="Email">
             <div class="valid-feedback" asp-validation-for="Email">
+                E-mail obrigatório
             </div>
         </div>
 
         <div class="">
             <label asp-for="Nick" class="form-label">Apelido</label>
-            <input type="text" class="form-control" id="nick" required asp-for="Nick">
+            <input type="text" class="form-control" id="Nick" required asp-for="Nick">
             <div class="valid-feedback" asp-validation-for="Nick">
+                Apelido
             </div>
         </div>
 
         <div class="">
             <label asp-for="Pass" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="pass" required asp-for="Pass">
+            <input type="password" class="form-control" id="Pass" required asp-for="Pass">
             <div class="valid-feedback" asp-validation-for="Pass">
+                Senha Obrigatoria
             </div>
         </div>
 

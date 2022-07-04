@@ -27,15 +27,28 @@ public class UserController : Controller
             if (!ModelState.IsValid)
             {
                 var erros = ModelState.Values;
-                return View("/Views/Home/UserForm.cshtml", erros);
+                ViewBag.AlertType = "Warning";
+                erros.ToList().ForEach(e =>
+                {
+                    if (e.Errors.Count > 0)
+                        ViewBag.AlertMessage += e.Errors.ToList()[0].ErrorMessage + "\n";
+                });
+                return View("/Views/Home/UserForm.cshtml", user);
             }
 
             var result = await _userService.AddAsync(user);
+
+            ViewBag.AlertType = "Success";
+            ViewBag.AlertMessage = "Cadastrado!";
+
             return View("/Views/Home/Index.cshtml", result);
         }
         catch (Exception ex)
         {
-            return View("/Views/Home/UserForm.cshtml", ex.GetBaseException().Message);
+            ViewBag.AlertType = "Danger";
+            ViewBag.AlertMessage = ex.GetBaseException().Message;
+
+            return View("/Views/Home/UserForm.cshtml", user);
         }
     }
 
@@ -44,14 +57,52 @@ public class UserController : Controller
     {
         try
         {
-            var result = await _userService.ListAsync(10, 10);
+            var result = await _userService.ListAsync(1, 1000);
             return View("/Views/Home/UserList.cshtml", result);
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.GetBaseException().Message);
+            ViewBag.AlertType = "Danger";
+            ViewBag.AlertMessage = ex.GetBaseException().Message;
+
+            return View("/Views/Home/UserList.cshtml");
         }
     }
+
+
+    [HttpPost]
+    public IActionResult Login([FromForm] String usuario, String senha)
+    {
+        try
+        {
+            if (!ModelState.IsValid)
+            {
+                var erros = ModelState.Values;
+                ViewBag.AlertType = "Warning";
+                erros.ToList().ForEach(e =>
+                {
+                    if (e.Errors.Count > 0)
+                        ViewBag.AlertMessage += e.Errors.ToList()[0].ErrorMessage + "\n";
+                });
+                return View("/Views/Home/UserAcess.cshtml");
+            }
+
+            var result = _userService.Login(usuario, senha);
+            if (result == null)
+            {
+                return View("/Views/Home/UserAccess.cshtml");
+            }
+            return View("/Views/Home/Index.cshtml", result);
+        }
+        catch (Exception ex)
+        {
+            ViewBag.AlertType = "Danger";
+            ViewBag.AlertMessage = ex.GetBaseException().Message;
+
+            return View("/Views/Home/UserAcess.cshtml");
+        }
+    }
+
 
 
 }

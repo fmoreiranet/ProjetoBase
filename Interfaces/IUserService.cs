@@ -11,5 +11,7 @@ namespace ProjetoBase.Interfaces
         Task<User?> GetAsync(Guid Id);
 
         bool Remove(User user);
+
+        User? Login(String usuario, String senha);
     }
 }

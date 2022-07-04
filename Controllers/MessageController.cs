@@ -27,15 +27,43 @@ public class MessageController : Controller
             if (!ModelState.IsValid)
             {
                 var erros = ModelState.Values;
-                return View("MessageForm");
+                ViewBag.AlertType = "Warning";
+                erros.ToList().ForEach(e =>
+                {
+                    if (e.Errors.Count > 0)
+                        ViewBag.AlertMessage += e.Errors.ToList()[0].ErrorMessage + "\n";
+                });
+                return View("/Views/Home/MessageForm.cshtml", message);
             }
 
             var result = await _messageService.AddAsync(message);
-            return Ok(message);
+            ViewBag.AlertType = "Success";
+            ViewBag.AlertMessage = "Cadastrado!";
+            return View("/Views/Home/Index.cshtml");
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.GetBaseException().Message);
+            ViewBag.AlertType = "Danger";
+            ViewBag.AlertMessage = ex.GetBaseException().Message;
+            return View("/Views/Home/MessageForm.cshtml", message);
+
         }
     }
+    [HttpGet]
+    public async Task<IActionResult> List()
+    {
+        try
+        {
+            var result = await _messageService.ListAsync(1, 1000);
+            return View("/Views/Home/MessageList.cshtml", result);
+        }
+        catch (Exception ex)
+        {
+            ViewBag.AlertType = "Danger";
+            ViewBag.AlertMessage = ex.GetBaseException().Message;
+
+            return View("/Views/Home/MessageList.cshtml");
+        }
+    }
+
 }

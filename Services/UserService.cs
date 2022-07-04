@@ -53,12 +53,27 @@ namespace ProjetoBase.Services
             {
                 var contUser = _context.Users.Count();
                 var totalPags = (int)Math.Ceiling((decimal)contUser / dataPage);
-                return _context.Users.Skip((page - 1) * dataPage).Take(dataPage).ToListAsync();
+                var result = _context.Users.Skip((page - 1) * dataPage).Take(dataPage).ToListAsync();
+                return result;
             }
             catch (Exception ex)
             {
                 throw new Exception("Erro ao listar os usuário.", ex);
             }
+        }
+
+        public User? Login(string usuario, string senha)
+        {
+            try
+            {
+                var result = _context.Users.Where(u => u.Email == usuario && u.Pass == senha && u.Ativo == true).FirstOrDefault();
+                return result;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Usuario não localizado.");
+            }
+
         }
 
         public bool Remove(User user)

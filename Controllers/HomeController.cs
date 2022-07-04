@@ -48,6 +48,11 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult MessageList()
+    {
+        return View();
+    }
+
     public IActionResult CategoryForm()
     {
         return View();

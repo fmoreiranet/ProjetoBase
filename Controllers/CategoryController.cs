@@ -28,15 +28,28 @@ public class CategoryController : Controller
             if (!ModelState.IsValid)
             {
                 var erros = ModelState.Values;
+                ViewBag.AlertType = "Warning";
+                erros.ToList().ForEach(e =>
+                {
+                    if (e.Errors.Count > 0)
+                        ViewBag.AlertMessage += e.Errors.ToList()[0].ErrorMessage + "\n";
+                });
                 return View("CategoryForm");
             }
 
             var result = await _categoryService.AddAsync(category);
-            return Ok(category);
+
+            ViewBag.AlertType = "Success";
+            ViewBag.AlertMessage = "Cadastrado!";
+
+            return View("/Views/Home/Index.cshtml", category);
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.GetBaseException().Message);
+            ViewBag.AlertType = "Danger";
+            ViewBag.AlertMessage = ex.GetBaseException().Message;
+
+            return View("/Views/Home/CategoryForm.cshtml", category);
         }
     }
 }
